@@ -29,9 +29,8 @@ fromElement.addEventListener("submit", async (e) => {
   const resData = await res.json();
   console.log(resData);
   if (resData.message === "loggedIn") {
-    console.log(resData);
     // window.location.href "http://localhost:4000/auth/login"
-    window.open("http://localhost:4000/auth/me");
+    window.open("http://localhost:4000/auth/home");
   } else {
     alert("Something wrong!");
   }

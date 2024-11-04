@@ -2,10 +2,8 @@ import express from "express";
 import cors from "cors";
 import mongoose, { connect } from "mongoose";
 import path from "node:path";
-import cookieParser from "cookie-parser";
 import { application, db } from "./src/config/index.js";
 import { authRoutes } from "./src/routes/index.js";
-import ejs from "ejs"
 
 const app = express();
 app.use(
@@ -19,7 +17,6 @@ app.use(
 app.set('view engine',"ejs")
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
 app.use(
   "/static",
   express.static(path.join(import.meta.dirname, "src", "public"))
@@ -36,8 +33,7 @@ try {
 
 app.use("/auth", authRoutes);
 
-app.use((err, req, res, next) => {
-  console.error(err.message);
+app.use((req, res, next) => {
   res.status(500).send("Something broke!");
 });
 

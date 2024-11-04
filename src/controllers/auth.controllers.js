@@ -14,7 +14,6 @@ export const authRegisterCon = async (req, res, next) => {
     req.body.full_name = req.body.fullName;
 
     const user = new User(req.body);
-    console.log(user);
 
     await user.save();
 
@@ -57,34 +56,24 @@ export const authGetRegisterCon = (req, res, next) => {
     process.cwd(),
     "src",
     "public",
-    "register.html"
+    "register.ejs"
   );
-  console.log(registerHtmlPath);
 
-  res.sendFile(registerHtmlPath);
+  res.render(registerHtmlPath);
 };
 
 export const authGetLoginCon = (req, res, next) => {
-  const loginHtmlPath = path.join(process.cwd(), "src", "public", "login.html");
-  console.log(loginHtmlPath);
+  const loginHtmlPath = path.join(process.cwd(), "src", "public", "login.ejs");
 
-  res.sendFile(loginHtmlPath);
+  res.render(loginHtmlPath);
 };
 
-export const authGetMeCon = async (req, res, next) => {
-  const { user } = req.cookies;
-  if (!user) {
+export const authGetHomeCon = async (req, res, next) => {
     const loginHtmlPath = path.join(
       process.cwd(),
       "src",
       "public",
-      "login.html"
+      "home.ejs"
     );
-    console.log(loginHtmlPath);
-    return res.sendFile(loginHtmlPath);
-  }
-  const userExists = await User.findOne({ email: user.email });
-
-  console.log(userExists);
-  return res.send(userExists);
+    res.render(loginHtmlPath);
 };

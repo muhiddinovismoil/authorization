@@ -30,7 +30,7 @@ fromElement.addEventListener("submit", async (e) => {
   console.log(resData);
   if (resData.message === "loggedIn") {
     // window.location.href "http://localhost:4000/auth/login"
-    window.open("http://localhost:4000/auth/me");
+    window.open("http://localhost:4000/auth/home");
   }else{
     alert("Something wrong!")
   }

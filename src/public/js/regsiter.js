@@ -18,7 +18,6 @@ fromElement.addEventListener("submit", async (e) => {
     password,
   };
 
-  console.log(data);
 
   if (confirmPassword !== password) {
     alert("confirmPassword is wrong");
@@ -39,7 +38,6 @@ fromElement.addEventListener("submit", async (e) => {
   }
 
   const resData = await res.json();
-  console.log(resData);
   if(resData.message ==="created"){
     // window.location.href "http://localhost:4000/auth/login"    
     window.open("http://localhost:4000/auth/login")    
